@@ -1,0 +1,222 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Countdown\n"
+"POT-Creation-Date: 2014-02-14 09:07+0700\n"
+"PO-Revision-Date: 2014-02-14 09:07+0700\n"
+"Last-Translator: Selz <engineer@selz.com>\n"
+"Language-Team: Zourbuth Gumaraphous <zourbuth@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: E:\\xampp\\htdocs\\wptheme\\wp-content\\plugins\\the-"
+"countdown\n"
+"X-Poedit-SearchPath-0: E:\\xampp\\htdocs\\wptheme\\wp-content\\plugins\\the-"
+"countdown\n"
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:235
+msgid "General"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:236
+msgid "Format"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:237
+msgid "Advanced"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:238
+msgid "Upgrade"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:239
+msgid "Support"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:245
+msgid "Until"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:245
+msgid "Since"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:260
+msgid "Title"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:265
+msgid "Date Picker"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:272
+msgid "Edit"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:283
+#, php-format
+msgid "%1$s-%2$s"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:293
+msgid "OK"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:294
+msgid "Cancel"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:309
+msgid ""
+"new Date(year, mth - 1, day, hr, min, sec) - date/time to count up from or "
+"numeric for seconds offset, or string for unit offset(s): 'Y' years, 'O' "
+"months, 'W' weeks, 'D' days, 'H' hours, 'M' minutes, 'S' seconds."
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:313
+msgid "Expiry Url"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:315
+msgid "A URL to load upon expiry, replacing the current page"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:318
+msgid "Expiry Text"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:320
+msgid "Text to display upon expiry, replacing the countdown"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:327
+msgid "Date Format"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:328
+msgid ""
+"Format for display - upper case for always, lower case only if non-zero, 'Y' "
+"years, 'O' months, 'W' weeks, 'D' days, 'H' hours, 'M' minutes, 'S' seconds"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:332
+msgid "Countdown Labels"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:333
+msgid "The display texts for the counters"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:336
+msgid "Years"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:338
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:377
+msgid "Year"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:341
+msgid "Months"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:343
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:380
+msgid "Month"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:346
+msgid "Weeks"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:348
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:383
+msgid "Week"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:351
+msgid "Days"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:353
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:386
+msgid "Day"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:356
+msgid "Hours"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:358
+msgid "Hour"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:361
+msgid "Minutes"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:363
+msgid "Minute"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:366
+msgid "Seconds"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:368
+msgid "Second"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:373
+msgid "Compact Labels"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:374
+msgid "The compact texts for the counters"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:396
+msgid "Always Expire"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:397
+msgid "Check if you want to trigger onExpiry even if never counted down."
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:401
+msgid "Compact Version"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:402
+msgid "True to display in a compact format, false for an expanded one."
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:405
+msgid "On Expiry"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:406
+msgid ""
+"Callback when the countdown expires, receives no parameters and 'this' is "
+"the containing division."
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:411
+msgid "On Tick"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:412
+msgid ""
+"Callback when the countdown is updated, receives int[7] being the breakdown "
+"by period (based on format) and 'this' is the containing division"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:416
+msgid "Tick Interval"
+msgstr ""
+
+#: E:\xampp\htdocs\wptheme\wp-content\plugins\the-countdown/widget.php:417
+msgid "Interval (seconds) between onTick callbacks"
+msgstr ""

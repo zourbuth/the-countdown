@@ -1,0 +1,66 @@
+
+
+/** GENERAL **/
+.tc-clearfix:before,
+.tc-clearfix:after {
+  display: table;
+  content: "";
+}
+.tc-clearfix:after {
+  clear: both;
+}
+.tc-toggle { background: #ddd; color: inherit; padding: 2px 10px; }
+.tc-toggle:focus { outline: none; }
+
+.the-countdown {
+	margin-bottom: 20px;
+}
+.intro-text, 
+.outro-text {
+	margin-bottom: 20px;
+}
+
+
+/** MINIMAL TEMPLATE **/
+.tc-minimal {
+    font-size: 2em;
+}
+
+
+/** DEFAULT TEMPLATE **/
+.tc-default {
+    margin-right: -10px;
+    margin-left: -10px;	
+}
+.tc-default > span {
+    padding-right: 10px;
+    padding-left: 10px;
+	display: block;
+	float: left;
+	text-align: center;
+}
+
+.tc-default.tc-col-3 > span { width: 33.33333333% }
+.tc-default.tc-col-4 > span { width: 25% }
+.tc-default.tc-col-5 > span { width: 20% }
+.tc-default.tc-col-6 > span { width: 16.66666667% }
+.tc-default.tc-col-7 > span { width: 14.285714285714% }
+
+.tc-default > span > span:nth-child(1) { /* amount */
+    display: block;
+    font-weight: bold;
+    font-size: 2.5em;
+    background: #eee;
+}
+.tc-default > span > span:nth-child(2) { /* period */
+	display: block;
+	font-size: 1em;
+}
+.tc-default:before,
+.tc-default:after {
+  display: table;
+  content: "";
+}
+.tc-default:after {
+  clear: both;
+}
