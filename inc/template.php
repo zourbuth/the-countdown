@@ -1,7 +1,6 @@
 <?php
 
-if ( ! class_exists( 'The_Countdown_Template' )) { 
-class The_Countdown_Template {
+if ( ! class_exists( 'The_Countdown_Template' )) { class The_Countdown_Template {
 	 
 	/**
 	 * Class constructor
@@ -26,16 +25,19 @@ class The_Countdown_Template {
 	 * @param $args (array) instance value
 	 * @since 1.2.0
 	 */
-	function register_template( $templates ) {
-		$templates['other'] = __( 'Others', 'the-countdown' );
+	function register_template( $templates ) {		
+		$templates['default'] 	= __( 'Default', 'the-countdown' );
+		$templates['minimal'] 	= __( 'Minimal', 'the-countdown' );
+		$templates['other'] 	= __( 'Others', 'the-countdown' );
 		return $templates;
 	}
 	
 	/**
-	 * Create element
+	 * Template options
 	 * 
-	 * @param $html (HTML) returned output
-	 * @param $args (array) instance value
+	 * @param $args 	(Array) 	template arguments from widget or shortcode
+	 * @param $instance	(Array) 	instance value
+	 * 
 	 * @since 1.2.0
 	 */
 	function template_options( $args, $instance ) {
@@ -101,14 +103,13 @@ class The_Countdown_Template {
 	
 	
 	/**
-	 * Create element
+	 * Countdown template
 	 * 
-	 * @param $html (HTML) returned output
-	 * @param $args (array) instance value
+	 * @param $args 	(Array) 	instance value
 	 * @since 1.2.0
 	 */
 	function countdown_template( $args ) {		
-		_tc_debugr( $args );
+		//_tc_debugr( $args );
 		$cols = strlen( $args['format'] );
 
 		switch( $args['template'] ) {				

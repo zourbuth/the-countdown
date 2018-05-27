@@ -38,6 +38,8 @@ if ( ! defined( 'ABSPATH' ) )
  * @since 1.0.0
  */
 define( 'THE_COUNTDOWN_VERSION', '1.2.0' );
+define( 'THE_COUNTDOWN_NAME', 'The Countdown' ); // @since 1.1.8
+define( 'THE_COUNTDOWN_SLUG', 'the-countdown' ); // @since 1.1.8
 define( 'THE_COUNTDOWN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'THE_COUNTDOWN_URL', plugin_dir_url( __FILE__ ) );
 define( 'THE_COUNTDOWN_TEXTDOMAIN', 'the-countdown' ); // @since 1.2.0
@@ -65,6 +67,7 @@ function the_countdown_plugin_loaded() {
 	require_once( THE_COUNTDOWN_PATH . 'inc/main.php' );
 	require_once( THE_COUNTDOWN_PATH . 'inc/countdown.php' );
 	require_once( THE_COUNTDOWN_PATH . 'inc/template.php' );
+	require_once( THE_COUNTDOWN_PATH . 'inc/meta.php' );
 
 	// Loads and registers the widgets
 	add_action( 'widgets_init', 'the_countdown_load_widgets' );	

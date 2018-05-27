@@ -33,7 +33,7 @@ class The_Countdown_Widget extends WP_Widget {
 	 */
 	function __construct() {
 	
-		$this->prefix = 'the-countdown-widget';  /* previous: the-countdown */
+		$this->prefix = 'the-countdown';
 		$this->textdomain = 'the-countdown';
 	
 		// Give your own prefix name eq. your-theme-name-
@@ -102,8 +102,8 @@ class The_Countdown_Widget extends WP_Widget {
 	function custom_header() {
 		$settings = $this->get_settings();
 		foreach ( $settings as $key => $setting )
-			if( $setting['header'] )
-				echo $setting['header'] ."\n";	
+			if( isset( $setting['header'] ) /* for customizer */ && $setting['header'] )
+				echo $setting['header'] ."\n";
 	}
 		
 	
@@ -140,7 +140,7 @@ class The_Countdown_Widget extends WP_Widget {
 			echo '<div class="'. $this->id . '-intro-text intro-text">' . $instance['intro'] . '</div>';			
 			
 		// Countdown block
-		the_countdown( $instance );
+		echo the_countdown( $instance );
 		
 		// Print outro text if exist
 		if ( ! empty( $instance['outro'] ) )
@@ -224,63 +224,6 @@ class The_Countdown_Widget extends WP_Widget {
 		);
 		*/
 		
-		$instance = wp_parse_args( (array) $instance, the_countdown_default_args() ); // merge the user-selected arguments with the defaults.
-		
-		$instance = the_countdown_update_instance( $instance ); // update to latest version
-		
-		//_tc_debugr( $instance );	
-		
-		// Rearrange arguments based on section name
-		$sections = $options = array();
-		
-		foreach ( the_countdown_arguments( $instance ) as $k => $arg ) // add $instance paramater for template options
-			if ( isset( $arg['section'] ) && $arg['section'] )
-				$sections[ $arg['section'] ][$k] = $arg;
-	
-		?>
-		<div class="pluginName">The Countdown<span class="pluginVersion"><?php echo THE_COUNTDOWN_VERSION; ?></span></div>
-
-		<div id="tcp-<?php echo $this->id ; ?>" class="total-options tabbable tabs-left">
-			<input type="hidden" class="tab" name="<?php echo $this->get_field_name( 'section' ); ?>" value="<?php echo $instance['section']; ?>" />
-					
-			<ul class="nav nav-tabs">
-				<?php foreach( $sections as $k => $v ) : ?>
-					<li class="<?php echo $k == $instance['section'] ? 'active' : ''; ?>"><?php echo ucfirst( $k ); ?></li>
-				<?php endforeach; ?>							
-			</ul>
-			
-			<ul class="tab-content">
-				<?php foreach( $sections as $sect => $section ) : ?>
-					<li class="tab-pane<?php echo $sect == $instance['section'] ? ' active' : ''; ?>">
-						<ul><?php
-							//_tc_debugr( $instance );	
-							foreach( $section as $k => $args ) {							
-								// Pass widget details
-								$args['_number'] 	= $this->number;
-								$args['_id'] 		= $this->id;
-																
-								if ( isset( $args['children'] ) ) {
-									foreach( $args['children'] as $c => $child ) { // loop children
-										$child['id']	= $this->get_field_id( "$k-$c" );
-										$child['name']	= $this->get_field_name( "{$k}[$c]" );
-										$child['value']	= $instance[$k][$c];											
-
-										Gumaraphous_Dialog::create_dialog( $child );										
-									}
-								} else {
-									$args['id']		= $this->get_field_id( $k );
-									$args['name']	= $this->get_field_name( $k );
-									$args['value']	= $instance[$k];									
-									
-									Gumaraphous_Dialog::create_dialog( $args );
-								}							
-							}
-							?>
-						</ul>
-					</li>
-				<?php endforeach; ?>			
-			</ul>
-		</div>	
-	<?php
+		the_countdown_dialog( $instance, $this );
 	}
 }

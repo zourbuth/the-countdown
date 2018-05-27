@@ -35,9 +35,10 @@ class The_Countdown {
 	function __construct() {
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_scripts' ) );
+		add_action( 'customize_controls_enqueue_scripts', array( &$this, 'admin_enqueue_scripts' ) );
 		
 		add_shortcode( 'the-countdown', array( $this, 'shortcode' ) );
-		add_shortcode( 'the-countdown-widget', array( $this, 'shortcode_widget' ) );		
+		add_shortcode( 'the-countdown-widget', array( $this, 'widget_shortcode' ) );		
 	}
 	
 			
@@ -47,6 +48,18 @@ class The_Countdown {
 	**/
 	function enqueue_styles() {
 		wp_enqueue_style( 'the-countdown', THE_COUNTDOWN_URL . 'css/styles.css' );
+	}
+		
+			
+	/**
+	 * Enqueue countdown scripts and styles
+	 * @since 1.0.0
+	**/
+	function admin_enqueue_scripts() {
+		wp_enqueue_style( 'forms' );
+		wp_enqueue_style( 'total-dialog', THE_COUNTDOWN_URL . 'css/dialog.css', array(), THE_COUNTDOWN_VERSION );
+		wp_register_script( 'total-dialog', THE_COUNTDOWN_URL . 'js/jquery.dialog.js', array( 'jquery' ), THE_COUNTDOWN_VERSION );
+		wp_enqueue_script( 'countdown-dialog', THE_COUNTDOWN_URL . 'js/jquery.countdown-dialog.js', array( 'total-dialog' ), THE_COUNTDOWN_VERSION );
 	}
 			
 			
@@ -97,14 +110,14 @@ class The_Countdown {
 	 * Shortcode does not generate the custom style and script
 	 * @since 1.2.0
 	 */
-	function widget_shortcode($atts, $content) {
+	function widget_shortcode( $atts, $content ) {
 		$options = get_option( 'widget_the-countdown' );
-		$args = $options[$atts['id']]; 	// overwrite
+		$args = $options[ $atts['id'] ]; 	// overwrite
 		$args['id'] = $atts['id'];
 		return the_countdown( $args );
-	}	
-} 
-new The_Countdown(); };
+	}
+	
+} new The_Countdown(); };
 
 
 /**
@@ -127,8 +140,21 @@ function the_countdown( $args ) {
 		 '</div>';
 		 
 	// For development purpose, this only visible for site admin and debug mode
-	if ( current_user_can('administrator') && defined( 'WP_DEBUG' ) && true === WP_DEBUG )
-		$html .= '<a class="tc-toggle" href="#">Pause</a>';
+	if ( current_user_can( 'administrator' ) && defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+		$html .= '<p class="tc-dev-tools-description">'. 
+					'<strong>'. __( 'Debugging Tools.', 'the-countdown' ) .'</strong><br />'.
+					__( 'This only visible for admin and with WP_DEBUG enabled.', 'the-countdown' ) .'</p>';
+		$html .= '<ul class="tc-dev-tools">';
+			$html .= '<li>'. __( 'Server Time', 'the-countdown' ). ' - ' . current_time( 'mysql' ) .'</li>';
+			$html .= '<li>'. __( 'Computer Time', 'the-countdown' ). ' - ' . date("Y-m-d H:i:s") .'</li>';
+			$html .= '<li><a class="tc-button tc-toggle" href="#">'. __( 'Pause', 'the-countdown' ) .'</a>'.
+						__( 'Use this button to inspect HTML elements.', 'the-countdown' ) .'</li>';	
+			$html .= '<li><a class="tc-button tc-setting" href="#">'. __( 'Arguments', 'the-countdown' ) .'</a>'.
+						__( 'Current countdown arguments.', 'the-countdown' ) .
+						'<pre>'. print_r( $args, true ) . '</pre>' .
+					 '</li>';
+		$html .= '</ul>';
+	}
 		
 	// Allow filter for countdown templating @since 1.2.0
 	$template = apply_filters( 'the_countdown_template', $args );
@@ -138,7 +164,7 @@ function the_countdown( $args ) {
 	if ( isset( $args['onExpiry']['message'] ) )
 		$html .= '<div style="display:none" class="countdown-message">'. $args['onExpiry']['message'] .'</div>';
 	
-	echo $html;
+	return $html;
 }
 
 
@@ -206,4 +232,65 @@ function the_countdown_script_var( $i ) {
 	$html .= "\n";
 	
 	return $html;
+}
+
+/**
+ * Render dialog for widget or shortcode
+ * 
+ * @param (Array)	$instance	dialog instance for widget or shortcode
+ * @param (Object)	$class		class functions, refer WP_Widget class
+ * 
+ * @since 1.1.8
+**/
+function the_countdown_dialog( $instance, $class ) {	
+	$instance = wp_parse_args( (array) $instance, the_countdown_default_args() ); // merge the user-selected arguments with the defaults.		
+	$instance = the_countdown_update_instance( $instance ); // update to latest version		
+	//_tc_debugr( $instance );		
+	$sections = $options = array(); // rearrange arguments based on section name		
+	foreach ( the_countdown_arguments( $instance ) as $k => $arg ) // add $instance paramater for template options
+		if ( isset( $arg['section'] ) && $arg['section'] )
+			$sections[ $arg['section'] ][$k] = $arg;
+	?>
+	<div class="pluginName"><?php echo THE_COUNTDOWN_NAME; ?>
+		<span class="pluginVersion"><?php echo THE_COUNTDOWN_VERSION; ?></span></div>
+
+	<div id="tc-<?php echo $class->id ; ?>" class="total-options tabbable tabs-left">
+		<input type="hidden" class="tab" name="<?php echo $class->get_field_name( 'section' ); ?>" 
+			value="<?php echo $instance['section']; ?>" />
+
+		<ul class="nav nav-tabs">
+			<?php foreach( $sections as $k => $v ) : ?>
+				<li class="<?php echo $k == $instance['section'] ? 'active' : ''; ?>"><?php echo ucfirst( $k ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+		
+		<ul class="tab-content">
+			<?php foreach( $sections as $sect => $section ) : ?>
+				<li class="tab-pane<?php echo $sect == $instance['section'] ? ' active' : ''; ?>">
+					<ul><?php
+						foreach( $section as $k => $args ) {							
+							$args['_number'] 	= $class->number; // pass widget or shortcode details
+							$args['_id'] 		= $class->id;
+
+							if ( isset( $args['children'] ) ) {
+								foreach( $args['children'] as $c => $child ) { // loop children
+									$child['id']	= $class->get_field_id( "$k-$c" );
+									$child['name']	= $class->get_field_name( "{$k}[$c]" );
+									$child['value']	= $instance[$k][$c];
+									Gumaraphous_Dialog::create_dialog( $child );										
+								}
+							} else {
+								$args['id']		= $class->get_field_id( $k );
+								$args['name']	= $class->get_field_name( $k );
+								$args['value']	= $instance[$k];
+								Gumaraphous_Dialog::create_dialog( $args );
+							}
+						}
+						?>
+					</ul>
+				</li>
+			<?php endforeach; ?>			
+		</ul>
+	</div>
+	<?php
 }

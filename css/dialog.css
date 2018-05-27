@@ -38,7 +38,8 @@
 }
 .total-shortcode,
 #poststuff .total-meta,
-.widget .total-widget {
+.widget .total-widget,
+.wp-customizer .widget-inside {
     background: url("../img/background.png") no-repeat scroll left top #FAFAFA;
     border-top: 1px solid #E4E4E4;
     position: relative;
@@ -115,13 +116,18 @@
 	height: 8em !important;
 }
 .total-options input[type="checkbox"],
-.total-options input[type="radio"] {
+.total-options input[type="radio"],
+.wp-customizer .total-options input[type="checkbox"],
+.wp-customizer .total-options input[type="radio"] {
     margin: 1px 4px 0 0;
 }
 .total-options input:hover,
 .total-options select:hover,
 .total-options textarea:hover {
     border-color: #CCCCCC;
+}
+.total-options .wp-picker-container {
+    display: inline-block;
 }
 .total-options .description {
     color: #777777;
@@ -183,20 +189,22 @@
 .total-options .remove-image {
 	color: orangered;
 }
-.pluginVersion {
-    color: #BBBBBB;
-    font-size: 12px;
-    font-weight: normal;
-    margin-left: 5px;
-}
 .pluginName {
     color: #cccccc;
     display: block;
     font-size: 18px;
-    margin: 10px 15px;
+    margin: 20px 15px 10px 15px;
+	font-weight: 300;
     text-shadow: 1px 1px #FFFFFF;
 }
-
+.wp-customizer .pluginName {
+    margin: 0 15px 15px 15px;
+}
+.pluginVersion {
+	color: #BBBBBB;
+	font-size: 14px;
+	margin-left: 8px;
+}
 
 /* Template Style
 ----------------------------------------------------------------------------------------------------*/
@@ -355,10 +363,18 @@
 
 .total-options select {
 	height: initial;
+	width: auto; /* override customizer */
+	/* wp-admin/css/forms.css */
+	padding: 2px;
+	vertical-align: middle;	
 }
 .total-options input,
-.total-options select {
-	vertical-align: middle;	
+.total-options select,
+.wp-customizer .total-options input,
+.wp-customizer .total-options select {
+	vertical-align: middle;
+	line-height: normal; /* override customizer */
+	margin: 1px; /* override customizer */
 }
 .total-options .timestampdiv input,
 .total-options .timestampdiv select {
@@ -377,10 +393,14 @@
 }
 .total-options .jj,
 .total-options .hh,
-.total-options .mn {
+.total-options .mn,
+.wp-customizer .total-options .jj,
+.wp-customizer .total-options .hh,
+.wp-customizer .total-options .mn {
 	width: 25px;
 }
-.total-options .aa {
+.total-options .aa,
+.wp-customizer .total-options .aa {
     width: 40px;
 }
 .total-options .save-timestamp {
@@ -431,6 +451,44 @@
 	border-radius: 0 3px 3px 0;
 }
 
+
+/** G-DIALOG **/
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+	position: relative;
+	width: 100%;
+	min-height: 1px;
+}
+.col-1  { -webkit-box-flex: 0; -ms-flex: 0 0 8.333333%; flex: 0 0 8.333333%; max-width: 8.333333%; }
+.col-2  { -webkit-box-flex: 0; -ms-flex: 0 0 16.666667%; flex: 0 0 16.666667%; max-width: 16.666667%; }
+.col-3  { -webkit-box-flex: 0; -ms-flex: 0 0 25%; flex: 0 0 25%; max-width: 25%; }
+.col-4  { -webkit-box-flex: 0; -ms-flex: 0 0 33.333333%; flex: 0 0 33.333333%; max-width: 33.333333%; }
+.col-5  { -webkit-box-flex: 0; -ms-flex: 0 0 41.666667%; flex: 0 0 41.666667%; max-width: 41.666667%; }
+.col-6  { -webkit-box-flex: 0; -ms-flex: 0 0 50%; flex: 0 0 50%; max-width: 50%; }
+.col-7  { -webkit-box-flex: 0; -ms-flex: 0 0 58.333333%; flex: 0 0 58.333333%; max-width: 58.333333%; }
+.col-8  { -webkit-box-flex: 0; -ms-flex: 0 0 66.666667%; flex: 0 0 66.666667%; max-width: 66.666667%; }
+.col-9  { -webkit-box-flex: 0; -ms-flex: 0 0 75%; flex: 0 0 75%; max-width: 75%; }
+.col-10 { -webkit-box-flex: 0; -ms-flex: 0 0 83.333333%; flex: 0 0 83.333333%; max-width: 83.333333%; }
+.col-11 { -webkit-box-flex: 0; -ms-flex: 0 0 91.666667%; flex: 0 0 91.666667%; max-width: 91.666667%; }
+.col-12 { -webkit-box-flex: 0; -ms-flex: 0 0 100%; flex: 0 0 100%; max-width: 100%; }
+
+
+.g-shortcodes .widget-inside {
+    padding: 1px 15px 15px;
+    line-height: 16px;
+}
+.g-shortcodes .widget-title h3 {
+    padding: 10px;
+}
+.g-shortcodes .widget-action {
+    padding: 5px;
+}
+.js .meta-box-sortables .g-meta .toggle-indicator:before {
+    content: "\f140";
+}
+.js .g-shortcodes .widget-top {
+    cursor: default;
+}
 
 /** SHARES BUTTON **/
 .g-shares a {

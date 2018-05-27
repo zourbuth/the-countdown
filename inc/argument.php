@@ -46,10 +46,7 @@ function the_countdown_arguments( $instance = null ) {
 		__( 'Seconds', 'the-countdown'),
 	));	
 
-	$templates = apply_filters( 'the_countdown_register_template', array(
-		'default' => __( 'Default', 'the-countdown'),
-		'minimal' => __( 'Minimal', 'the-countdown'),
-	));
+	$templates = apply_filters( 'the_countdown_register_template', array() );
 
 	$arguments = array(
 		/* Stored current selected section/tab */
@@ -178,7 +175,7 @@ function the_countdown_arguments( $instance = null ) {
 			'section' => 'template',
 			'label' => 'Template',
 			'type' => 'select',
-			'description' => __( 'Select one template from the list below. Upgrade to <a href="http://goo.gl/jYQoM"><strong>Pro</strong></a> version for template customizations, font size and color, background color, and many more.', 'the-countdown' ),
+			'description' => __( 'Select one template from the list below. <a href="http://goo.gl/jYQoM"><strong>Upgrade to Pro</strong></a> version for template customizations, font size and color, background color, and many more.', 'the-countdown' ),
 			'options' => $templates,
 			'default' => 'default',
 			'onchange' => "wpWidgets.save(jQuery(this).closest(\"div.widget\"),0,1,0)",

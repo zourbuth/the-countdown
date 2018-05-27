@@ -50,6 +50,7 @@ if ( ! class_exists( 'Gumaraphous_Dialog' )) { class Gumaraphous_Dialog {
 	function __construct() {
 		add_action( 'admin_print_scripts-widgets.php', array( &$this, 'enqueue_scripts' ), 1 );
 		add_action( 'admin_print_footer_scripts-widgets.php', array( &$this, 'custom_scripts' ), 99 );
+		add_action( 'customize_controls_print_footer_scripts', array( &$this, 'custom_scripts' ) );
 	}
 
 
@@ -71,12 +72,19 @@ if ( ! class_exists( 'Gumaraphous_Dialog' )) { class Gumaraphous_Dialog {
 	 */		
 	function custom_scripts( $hook_suffix ) { 
 		?><script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$('.gcolor-picker').wpColorPicker();
-			$(this).ajaxComplete(function() {
-				$('.gcolor-picker').wpColorPicker();
-			});
-		})
+		( function( $ ) {
+			var params = { 
+				change: function(e, ui) { // enable widget "Save" button
+					$( e.target ).val( ui.color.toString() );
+					$( e.target ).trigger('change');
+				},
+			}
+			
+			// Note: e and widget is undefined in ready
+			$(document).on( 'ready widget-added widget-updated', function(e, widget){			
+				$('.gcolor-picker').not('[id*="__i__"]').wpColorPicker( params );
+			});			
+		})( jQuery );
 		</script><?php
 		echo "\n";
 	}		
